@@ -26,7 +26,7 @@ To run the Request Analyzer locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/request-analyzer.git
+   git clone https://github.com/Swarnendu0123/request-analyzer.git
    ```
 
 2. Navigate to the project directory:
@@ -61,7 +61,7 @@ To run the Request Analyzer locally, follow these steps:
    npm run dev
    ```
 
-7. Access the application in your web browser at `http://localhost:5173`.
+7. Access the application in your web browser at `http://localhost:5173`. The backend is running on `http://localhost:8000`.
 
 ## Usage
 
