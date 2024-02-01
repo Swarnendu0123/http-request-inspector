@@ -31,12 +31,12 @@ const UrlGnerator = () => {
                 {url}
             </div>
             <div className="col-span-2">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900" onClick={hanldeGnerate}>
+                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={hanldeGnerate}>
                     Gnerate endpoint URL 
                 </button>
             </div>
             <div className="col-span-1">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900" onClick={handleRefresh}>
+                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={handleRefresh}>
                     Refresh
                 </button>
             </div>
