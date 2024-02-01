@@ -1,8 +1,10 @@
 #root {
-  max-width: 1350px;
+  max-width: 100%;;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 2rem  4.5rem 4.5rem 4.5rem;
   text-align: center;
+  background-color: black;
+  color: white;
 }
 
 @keyframes logo-spin {
@@ -27,3 +29,4 @@
 .read-the-docs {
   color: #888;
 }
+

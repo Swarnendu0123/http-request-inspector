@@ -6,9 +6,9 @@ const Details = ({ messeges }) => {
     const { url, method, body, headers, params, query, index, time } = messege;
 
     return (
-        <div className="grid gap-4 grid-cols-2 max-h-[70vh] overflow-y-auto border border-gray-200">
+        <div className="grid gap-4 grid-cols-2 max-h-[70vh] overflow-y-auto border border-gray-500 bg-gray-800 text-white rounded-xl">
             <div className="col-span-2 mt-2">
-                <div className="col-span-2 bg-black text-white mb-2">
+                <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}
                 </div>
                 {method == 'GET' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">
@@ -23,7 +23,7 @@ const Details = ({ messeges }) => {
                 {method == 'DELETE' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">
                     {method}
                 </span>}
-                {method == 'PATCH' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-black text-white">
+                {method == 'PATCH' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-800 text-white">
                     {method}
                 </span>}
 
@@ -31,11 +31,11 @@ const Details = ({ messeges }) => {
             <div className="col-span-2">
                 {url}
             </div>
-            <div className="col-span-2 bg-black text-white">Request Quary</div>
+            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Quary</div>
             {
                 Object.keys(query).map((key, index) => {
                     return (
-                        <div key={index} className="grid grid-cols-2 col-span-2 border border-grey-200 hover:bg-gray-200">
+                        <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-500">
                             <div className="col-span-1">
                                 {key}
                             </div>
@@ -46,11 +46,11 @@ const Details = ({ messeges }) => {
                     )
                 })
             }
-            <div className="col-span-2 bg-black text-white">Request Body</div>
+            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Body</div>
             {
                 Object.keys(body).map((key, index) => {
                     return (
-                        <div key={index} className="grid grid-cols-2 col-span-2 border border-green-200 hover:bg-gray-200">
+                        <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-700">
                             <div className="col-span-1">
                                 {key}
                             </div>
@@ -61,11 +61,11 @@ const Details = ({ messeges }) => {
                     )
                 })
             }
-            <div className="col-span-2 bg-black text-white">Request Headers</div>
+            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Headers</div>
             {
                 Object.keys(headers).map((key, index) => {
                     return (
-                        <div key={index} className="grid grid-cols-2 col-span-2 border border-green-200 hover:bg-gray-200">
+                        <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-500">
                             <div className="col-span-1">
                                 {key}
                             </div>
@@ -76,11 +76,11 @@ const Details = ({ messeges }) => {
                     )
                 })
             }
-            <div className="col-span-2 bg-black text-white">Request Params</div>
+            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Params</div>
             {
                 Object.keys(params).map((key, index) => {
                     return (
-                        <div key={index} className="grid grid-cols-2 col-span-2 border border-green-200 hover:bg-gray-200">
+                        <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-500">
                             <div className="col-span-1">
                                 {key}
                             </div>

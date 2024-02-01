@@ -5,11 +5,11 @@ import UrlGnerator from './components/UrlGnerator.component'
 function App() {
 
   return (
-    <>
-      <h1 className='mb-5 text-4xl'>Welcome to Request Analyser </h1>
+    <div className="text-white bg-black">
+      <h1 className='mb-5 text-4xl font-bold'>Request Analyser </h1>
       <UrlGnerator />
       <HomeRoute />
-    </>
+    </div>
   )
 }
 
