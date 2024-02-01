@@ -1,12 +1,19 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 const cors = require('cors')
-const { BACKEND_URL } = require('./config');
+const { BACKEND_URL, FRONTEND_URL } = require('./config');
 const app = express();
 
 
 app.use(cors())
 app.use(express.json());
+app.use("/", (req, res, next) => {
+    if (req.rawHeaders.includes(FRONTEND_URL)) {
+        next();
+    } else {
+        res.json({ error: "Invalid URL" })
+    }
+});
 
 
 let id = '';
@@ -37,7 +44,7 @@ app.get('/v1', (req, res) => {
 
 app.get("/req/:id", (req, res) => {
     if (req.params.id === id) {
-     
+
         appendToStartIndex({
             url: req.url,
             method: req.method,
