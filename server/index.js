@@ -7,7 +7,7 @@ const app = express();
 
 app.use(cors())
 app.use(express.json());
-app.use("/", (req, res, next) => {
+app.use("/v1", (req, res, next) => {
     if (req.rawHeaders.includes(FRONTEND_URL)) {
         next();
     } else {
