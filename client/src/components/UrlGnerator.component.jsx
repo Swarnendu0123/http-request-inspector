@@ -32,7 +32,7 @@ const UrlGnerator = () => {
             </div>
             <div className="col-span-2">
                 <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={hanldeGnerate}>
-                    Gnerate endpoint URL 
+                    Generate endpoint URL 
                 </button>
             </div>
             <div className="col-span-1">
