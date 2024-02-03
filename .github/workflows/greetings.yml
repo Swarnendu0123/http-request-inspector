@@ -13,14 +13,14 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: |
-          Greetings from Request Analyser Team, I am GitHub Actions Bot! 👋 
+          Greetings from HTTP Request Inspector Team, I am GitHub Actions Bot! 👋 
           Thank you for opening your first issue on this repository.
           
           We appreciate your contribution and are here to help. Please provide detailed information about the issue you're facing or the improvement you'd like to suggest. The KBS community is eager to collaborate with you! If you are trying to solve the issue go through [installation guide](https://github.com/Swarnendu0123/kbs-website/blob/main/docs%2Finstallation.md).
           If you have any questions or need guidance, feel free to ask.
           
           Happy coding! 🚀
-          Team Request Analyser
+          Team HTTP Request Inspector
         pr-message: |
           Hi contributor! 👋 Thanks for submitting your first pull request to this repository.
 
@@ -29,4 +29,4 @@ jobs:
           We encourage you to adhere to our contribution guidelines and coding standards. Your contributions make our community better! 🙌
 
           Happy coding! 🚀
-          Team Request Analyser!
+          Team HTTP Request Inspector!
