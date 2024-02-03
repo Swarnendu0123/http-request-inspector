@@ -31,7 +31,7 @@ const Details = ({ messeges }) => {
             <div className="col-span-2">
                 {url}
             </div>
-            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Quary</div>
+            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Query</div>
             {
                 Object.keys(query).map((key, index) => {
                     return (
