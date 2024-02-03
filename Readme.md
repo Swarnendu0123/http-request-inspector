@@ -9,9 +9,10 @@ Request Analyzer is a web application built with React and Express that allows u
 [Swarnendu Bhandari](https://github.com/Swarnendu0123)
 
 ## Demonstration
-[![Request Analyzer Demo](./assets/example.mp4)](./assets/example.mp4)
+[![Request Analyzer Demo](./assets/example.mp4)](https://github.com/Bikram-ghuku/request-alalyser/assets/37508038/3a26121a-73e3-4bc4-b686-8eca2fcf894c)
 
 ## Features
+
 
 - **HTTP Request Monitoring:** Receive and display incoming HTTP requests in real-time.
 - **Detailed Request Information:** View detailed information about each request, including headers, body, method, and timestamp.
