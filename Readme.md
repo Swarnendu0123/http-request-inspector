@@ -33,7 +33,7 @@ To run the Request Analyzer locally, follow these steps:
 2. Navigate to the project directory:
 
    ```bash
-   cd request-analyzer
+   cd http-request-inspector
    ```
 
 3. Install dependencies for the server:
