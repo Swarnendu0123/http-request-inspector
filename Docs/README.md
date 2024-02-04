@@ -44,4 +44,4 @@ Contributions to the HTTP Request Inspector project are welcome! To contribute, 
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.# http-request-inspector
+This project is licensed under the MIT License. See the [LICENSE](LICENSE.md) file for details.# http-request-inspector
