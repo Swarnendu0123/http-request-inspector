@@ -49,12 +49,12 @@ To run the Request Analyzer locally, follow these steps:
 9.  Go to `server\config.js` and select all and paste the code:
     ```
     const BACKEND_URL = 'http://localhost:8000';
-   const FRONTEND_URL = 'http://localhost:5173/';
+    const FRONTEND_URL = 'http://localhost:5173/';
 
-   module.exports = {
-       BACKEND_URL,
-      FRONTEND_URL,
-   };
+    module.exports = {
+          BACKEND_URL,
+          FRONTEND_URL,
+    };
     ```
 
 Now, you are good to go.
