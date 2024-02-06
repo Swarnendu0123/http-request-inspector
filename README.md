@@ -2,14 +2,14 @@
 
 HTTP Request Inspector is a web application built with React and Express that allows users to analyze and inspect HTTP requests sent to a custom URL. With HTTP Request Inspector, you can monitor incoming requests, view detailed information about each request, and track request trends over time.
 
-![Project Image](../assets/example.png)
+![Project Image](./assets/example.png)
 
 ## Developers
 
 [Swarnendu Bhandari](https://github.com/Swarnendu0123)
 
 ## Demonstration
-[![HTTP Request Inspector Demo](../assets/example.mp4)](https://github.com/Bikram-ghuku/request-alalyser/assets/37508038/3a26121a-73e3-4bc4-b686-8eca2fcf894c)
+[![HTTP Request Inspector Demo](./assets/example.mp4)](https://github.com/Bikram-ghuku/request-alalyser/assets/37508038/3a26121a-73e3-4bc4-b686-8eca2fcf894c)
 
 ## Features
 
@@ -21,7 +21,7 @@ HTTP Request Inspector is a web application built with React and Express that al
 
 ## Installation
 
-- Before running the HTTP Request Inspector, make sure to follow the [installation instructions](./Installation.md) for setting up the server and client.
+- Before running the HTTP Request Inspector, make sure to follow the [installation instructions](././docs/installation.md) for setting up the server and client.
 
 ## Usage
 
