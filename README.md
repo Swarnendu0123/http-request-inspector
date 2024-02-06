@@ -21,7 +21,7 @@ HTTP Request Inspector is a web application built with React and Express that al
 
 ## Installation
 
-- Before running the HTTP Request Inspector, make sure to follow the [installation instructions](././docs/installation.md) for setting up the server and client.
+- Before running the HTTP Request Inspector, make sure to follow the [installation instructions](https://github.com/Swarnendu0123/http-request-inspector/blob/main/Docs/Installation.md) for setting up the server and client.
 
 ## Usage
 
@@ -40,7 +40,7 @@ Contributions to the HTTP Request Inspector project are welcome! To contribute, 
 2. Create a new branch for your feature or bug fix.
 3. Make changes and test them thoroughly.
 4. Commit your changes and push them to your fork.
-5. Submit a pull request to the main repository's `master` branch.
+5. Submit a pull request to the main repository's `main` branch.
 
 ## License
 
