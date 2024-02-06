@@ -5,16 +5,21 @@ const Navbar = () => {
   return (
     <div>
       <div class="flex">
-        <a
-          target="_blank"
-          href="https://github.com/Swarnendu0123/http-request-inspector/"
-        >
-          {" "}
-          <FaGithub class="flex-none w-10 h-10" />{" "}
-        </a>
         <h1 class="flex-auto mb-6 text-4xl font-bold">
           HTTP Request Inspector{" "}
         </h1>
+
+        <a
+          class="flex justify-center"
+          target="_blank"
+          href="https://github.com/Swarnendu0123/http-request-inspector/"
+        >
+          <p class="mt-1 decoration-black ">
+            {" "}
+            Swarnendu0123/http-request-inspector{" "}
+          </p>
+          <FaGithub class="ml-2 w-10 h-10" />
+        </a>
       </div>
     </div>
   );
