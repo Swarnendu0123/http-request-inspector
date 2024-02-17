@@ -6,7 +6,7 @@ const Details = ({ messeges }) => {
     const { url, method, body, headers, params, query, index, time } = messege;
 
     return (
-        <div className="grid gap-4 grid-cols-2 max-h-[70vh] overflow-y-auto border border-gray-500 bg-gray-800 text-white rounded-xl">
+        <div className=" grid gap-4 grid-cols-2 max-h-[70vh] overflow-y-auto border border-gray-500 bg-gray-800 text-white rounded-xl">
             <div className="col-span-2 mt-2">
                 <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}

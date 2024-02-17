@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div>
       <div class="flex">
-        <h1 class="flex-auto mb-6 text-4xl font-bold">
+        <h1 class="flex-auto mb-6 text-2xl sm:text-4xl font-bold ">
           HTTP Request Inspector{" "}
         </h1>
 
@@ -14,7 +14,7 @@ const Navbar = () => {
           target="_blank"
           href="https://github.com/Swarnendu0123/http-request-inspector/"
         >
-          <p class="mt-1 decoration-black ">
+          <p class="mt-1 decoration-black sm:block hidden">
             {" "}
             Swarnendu0123/http-request-inspector{" "}
           </p>

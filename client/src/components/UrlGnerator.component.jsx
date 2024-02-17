@@ -45,7 +45,7 @@ const UrlGnerator = () => {
 
     return (
         <div className="grid grid-cols-12 gap-4 pb-3">
-            <div className="py-3 px-4  items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900 col-span-9 flex justify-between">
+            <div className="py-3 px-4  items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900 sm:col-span-9 col-span-12 flex justify-between">
                 {url}
                 <ToastContainer
                     position="bottom-right"
@@ -65,12 +65,12 @@ const UrlGnerator = () => {
                 </button>
             </div>
 
-            <div className="col-span-2">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={hanldeGnerate}>
+            <div className="sm:col-span-2 col-span-7">
+                <button type="button" className="py-3 px-4 inline-flex items-center gap-x- text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={hanldeGnerate}>
                     Generate endpoint URL
                 </button>
             </div>
-            <div className="col-span-1">
+            <div className="sm:col-span-1 col-span-5">
                 <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={handleRefresh}>
                     Refresh
                 </button>

@@ -10,14 +10,14 @@ const HomeRoute = () => {
 
     return (
         <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-1 max-h-[70vh] overflow-y-auto">
+            <div className="sm:col-span-1 col-span-3 max-h-[70vh] overflow-y-auto">
                 {
                     messeges.map((item, index) => {
                         return <Messege key={index} messege={item} />
                     })
                 }
             </div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2 col-span-3">
                 <Details messeges={messeges} />
             </div>
         </div>
