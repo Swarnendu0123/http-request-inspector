@@ -14,7 +14,7 @@
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.17",
     "axios": "^1.6.7",
-c    "firebase": "^10.8.0",
+    "firebase": "^10.8.0",
     "framer-motion": "^11.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
