@@ -1,8 +1,8 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { FaGithub } from "react-icons/fa";
 import { auth } from "./firebase.config";
-import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../store/atoms/user.atom";
 import { Bounce, toast } from "react-toastify";
@@ -46,7 +46,7 @@ const Login = () => {
             });
     }
 
- 
+
 
     const handleOpen = (backdrop) => {
         setBackdrop(backdrop);
@@ -56,13 +56,16 @@ const Login = () => {
     return (
         <>
             <div className="flex flex-wrap gap-3 ml-4 mr-4">
-                <Button
-                    key="blur"
-                    variant="flat"
-                    color="warning"
-                    onPress={() => handleOpen("blur")}
-                >
-                    {user ? <Profile/>:
+
+                {user ?
+                    <Profile />
+                    :
+                    <Button
+                        key="blur"
+                        variant="flat"
+                        color="warning"
+                        onPress={() => handleOpen("blur")}
+                    >
                         <span className="inline-block size-[46px] bg-gray-900 rounded-full overflow-hidden">
                             <svg className="size-full text-gray-700" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="0.62854" y="0.359985" width="15" height="15" rx="7.5" fill="white" />
@@ -70,8 +73,9 @@ const Login = () => {
                                 <path d="M11.818 10.5975C10.2992 12.6412 7.42106 13.0631 5.37731 11.5537C5.01171 11.2818 4.69296 10.9631 4.42107 10.5975C4.28982 10.4006 4.27107 10.1475 4.37419 9.94123L4.51482 9.65059C4.84296 8.95684 5.53671 8.51624 6.30546 8.51624H9.95231C10.7023 8.51624 11.3867 8.94749 11.7242 9.62249L11.8742 9.93184C11.968 10.1475 11.9586 10.4006 11.818 10.5975Z" fill="currentColor" />
                             </svg>
                         </span>
-                    }
-                </Button>
+                    </Button>
+                }
+
 
             </div>
             <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose} className="py-3 px-4  items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-900 text-white  sm:col-span-9 col-span-12 flex justify-between">
