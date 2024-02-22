@@ -23,6 +23,19 @@ const UrlGnerator = () => {
     const handleRefresh = async () => {
         const res = await axios.get(BACKEND_URL + "/allreq")
         console.log(res.data);
+        if (res.data.length === 0) {
+            toast.error('NO request found', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+                });
+        }
         setMesseges(res.data);
     }
 
@@ -38,7 +51,7 @@ const UrlGnerator = () => {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            theme: "light",
+            theme: "dark",
             transition: Bounce,
             });
     }

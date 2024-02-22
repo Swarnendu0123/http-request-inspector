@@ -1,9 +1,9 @@
 import { useRecoilValue } from "recoil";
 import selectedMessege from "../store/atoms/selectedRed.atom";
-const Details = ({ messeges }) => {
-    const messegesIndex = useRecoilValue(selectedMessege);
-    const messege = messeges[messegesIndex];
-    const { url, method, body, headers, params, query, index, time } = messege;
+const Details = () => {
+    const messege = useRecoilValue(selectedMessege);
+    
+    const { url, method, body, headers, params, query, time } = messege;
 
     return (
         <div className=" grid gap-4 grid-cols-2 max-h-[70vh] overflow-y-auto border border-gray-500 bg-gray-800 text-white rounded-xl">

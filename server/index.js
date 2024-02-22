@@ -21,7 +21,7 @@ let id = '';
 const reqArray = [];
 
 const appendToStartIndex = (req) => {
-    reqArray.push({
+    reqArray.unshift({
         url: req.url,
         method: req.method,
         body: req.body,

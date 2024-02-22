@@ -2,11 +2,11 @@ import { useSetRecoilState } from "recoil";
 import selectedMessege from "../store/atoms/selectedRed.atom";
 
 const Messege = ({ messege }) => {
-    const { url, method, index, time } = messege;
+    const { url, method, time } = messege;
     const setSelectedMessegeIndex = useSetRecoilState(selectedMessege);
 
     const handleClick = () => {
-        setSelectedMessegeIndex(index);
+        setSelectedMessegeIndex(messege);
     }
 
 
