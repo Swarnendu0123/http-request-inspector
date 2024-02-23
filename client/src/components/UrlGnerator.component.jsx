@@ -13,7 +13,6 @@ const UrlGnerator = () => {
     const hanldeGnerate = async () => {
         try {
             const res = await axios.get(BACKEND_URL + "/v1");
-            console.log(res, BACKEND_URL + "/v1");
             setUrl(res.data);
         } catch (error) {
             console.log(error);
@@ -22,7 +21,6 @@ const UrlGnerator = () => {
 
     const handleRefresh = async () => {
         const res = await axios.get(BACKEND_URL + "/allreq")
-        console.log(res.data);
         if (res.data.length === 0) {
             toast.error('NO request found', {
                 position: "bottom-right",

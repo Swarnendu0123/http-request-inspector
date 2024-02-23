@@ -6,7 +6,7 @@ import allMesseges from "../store/atoms/allMeggeges.atom";
 const HomeRoute = () => {
 
     const messeges = useRecoilValue(allMesseges);
-    console.log(messeges);
+   
 
     return (
         <div className="grid grid-cols-3 gap-4">

@@ -27,7 +27,6 @@ const Login = () => {
                 GithubAuthProvider.credentialFromResult(result);
                 const user = result.user;
                 setUser(user);
-                console.log(user);
                 onClose(); // Moved onClose here
                 toast.success('Successfully logged in', {
                     position: "bottom-right",
@@ -64,7 +63,7 @@ const Login = () => {
                         key="blur"
                         variant="flat"
                         color="warning"
-                        onPress={() => handleOpen("blur")}
+                        onClick={() => handleOpen("blur")}
                     >
                         <span className="inline-block size-[46px] bg-gray-900 rounded-full overflow-hidden">
                             <svg className="size-full text-gray-700" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
