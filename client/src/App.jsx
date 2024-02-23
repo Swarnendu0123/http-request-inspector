@@ -1,7 +1,7 @@
 import "./App.css";
-import HomeRoute from "./components/Home.component";
 import UrlGnerator from "./components/UrlGnerator.component";
 import Navbar from "./components/Navbar.component";
+import HomeRoute from "./routes/Home.route";
 
 function App() {
   return (

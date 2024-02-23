@@ -1,7 +1,8 @@
 import { useSetRecoilState } from "recoil";
-import selectedMessege from "../store/atoms/selectedRed.atom";
+import selectedMessege from "../store/atoms/selectedReq.atom";
 
-const Messege = ({ messege }) => {
+
+const RequestMessege = ({ messege }) => {
     const { url, method, time } = messege;
     const setSelectedMessegeIndex = useSetRecoilState(selectedMessege);
 
@@ -11,7 +12,7 @@ const Messege = ({ messege }) => {
 
 
     return (
-        <button type="button" className="hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start  p-4 md:p-5 rounded-xl bg-gray-800 hover:bg-gray-700 focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 active w-full border border-gray-700 mb-3 text-white" id="tabs-with-card-item-1" data-hs-tab="#tabs-with-card-1" aria-controls="tabs-with-card-1" role="tab" onClick={handleClick}>
+        <button type="button" className="hs-tab-active:shadow-md hs-tab-active:hover:border-transparent text-start  p-4 md:p-5  bg-gray-800 hover:bg-gray-900 focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600 active w-full border border-gray-700  text-white" id="tabs-with-card-item-1" data-hs-tab="#tabs-with-card-1" aria-controls="tabs-with-card-1" role="tab" onClick={handleClick}>
             {method == 'GET' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">
                 {method}
             </span>}
@@ -45,4 +46,4 @@ const Messege = ({ messege }) => {
     )
 }
 
-export default Messege;
+export default RequestMessege;

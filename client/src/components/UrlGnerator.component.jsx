@@ -5,9 +5,12 @@ import axios from 'axios';
 import allMesseges from "../store/atoms/allMeggeges.atom";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import selectedMessege from "../store/atoms/selectedReq.atom";
+import Button from "./Button.component";
 
 const UrlGnerator = () => {
     const [url, setUrl] = useRecoilState(reqUrl);
+    const setSelectedMessege = useSetRecoilState(selectedMessege);
     const setMesseges = useSetRecoilState(allMesseges);
 
     const hanldeGnerate = async () => {
@@ -35,6 +38,7 @@ const UrlGnerator = () => {
                 });
         }
         setMesseges(res.data);
+        setSelectedMessege(res.data[0])
     }
 
 
@@ -77,14 +81,10 @@ const UrlGnerator = () => {
             </div>
 
             <div className="sm:col-span-2 col-span-7">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x- text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={hanldeGnerate}>
-                    Generate endpoint URL
-                </button>
+                <Button text="Generate endpoint URL" onClick={hanldeGnerate}/>
             </div>
             <div className="sm:col-span-1 col-span-5">
-                <button type="button" className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100" onClick={handleRefresh}>
-                    Refresh
-                </button>
+                <Button text="Refresh" onClick={handleRefresh}/>
             </div>
         </div>
     )

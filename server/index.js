@@ -11,7 +11,7 @@ app.use("/v1", (req, res, next) => {
     if (req.rawHeaders.includes(FRONTEND_URL)) {
         next();
     } else {
-        res.json({ error: "Invalid URL" })
+        res.json({ error: "Invalid URL", messege: `You are not authorized to make this request. Please use ${FRONTEND_URL} to make requests.`})
     }
 });
 
@@ -56,7 +56,10 @@ app.get("/req/:id", (req, res) => {
             time: new Date().toLocaleTimeString(),
         });
         console.log(reqArray);
-        res.json({ messege: "success" });
+        res.json({
+            status: "success",
+            messege: `go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`
+        });
         return;
     }
     res.json({ error: "Invalid ID" });
@@ -76,7 +79,10 @@ app.post("/req/:id", (req, res) => {
             time: new Date().toLocaleTimeString(),
         });
         console.log(reqArray);
-        res.json({ messege: "success" });
+        res.json({
+            status: "success",
+            messege: `go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`
+        });
         return;
     }
     res.json({ error: "Invalid ID" });
@@ -96,7 +102,10 @@ app.put("/req/:id", (req, res) => {
             time: new Date().toLocaleTimeString(),
         });
         console.log(reqArray);
-        res.json({ messege: "success" });
+        res.json({
+            status: "success",
+            messege: `go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`
+        });
         return;
     }
     res.json({ error: "Invalid ID" });
@@ -116,7 +125,10 @@ app.delete("/req/:id", (req, res) => {
             time: new Date().toLocaleTimeString(),
         });
         console.log(reqArray);
-        res.json({ messege: "success" });
+        res.json({
+            status: "success",
+            messege: `go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`
+        });
         return;
     }
     res.json({ error: "Invalid ID" });
@@ -136,7 +148,10 @@ app.patch("/req/:id", (req, res) => {
             time: new Date().toLocaleTimeString(),
         });
         console.log(reqArray);
-        res.json({ messege: "success" });
+        res.json({
+            status: "success",
+            messege: `go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`
+        });
         return;
     }
     res.json({ error: "Invalid ID" });

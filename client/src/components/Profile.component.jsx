@@ -52,7 +52,7 @@ const Profile = () => {
                         <p className="font-bold">{user.email}</p>
                     </DropdownItem>
                     <DropdownItem key="settings">
-                        My History
+                        History
                     </DropdownItem>
                     <DropdownItem key="analytics">
                         Saved Domains
