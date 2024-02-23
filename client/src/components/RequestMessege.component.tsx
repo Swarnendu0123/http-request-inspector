@@ -1,8 +1,10 @@
 import { useSetRecoilState } from "recoil";
 import selectedMessege from "../store/atoms/selectedReq.atom";
+import { RequestType } from "../types/types";
+import React from "react";
 
 
-const RequestMessege = ({ messege }) => {
+const RequestMessege = ({ messege }: {messege: RequestType}) => {
     const { url, method, time } = messege;
     const setSelectedMessegeIndex = useSetRecoilState(selectedMessege);
 

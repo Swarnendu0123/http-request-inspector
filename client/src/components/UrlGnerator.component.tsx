@@ -7,6 +7,7 @@ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import selectedMessege from "../store/atoms/selectedReq.atom";
 import Button from "./Button.component";
+import React from "react";
 
 const UrlGnerator = () => {
     const [url, setUrl] = useRecoilState(reqUrl);
@@ -36,6 +37,7 @@ const UrlGnerator = () => {
                 theme: "dark",
                 transition: Bounce,
                 });
+                return;
         }
         setMesseges(res.data);
         setSelectedMessege(res.data[0])

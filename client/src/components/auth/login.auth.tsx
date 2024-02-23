@@ -7,6 +7,9 @@ import { useRecoilState } from "recoil";
 import { userAtom } from "../../store/atoms/user.atom";
 import { Bounce, toast } from "react-toastify";
 import Profile from "../Profile.component";
+import { UserType } from "../../types/types";
+import React from "react";
+
 
 const provider = new GithubAuthProvider();
 
@@ -16,14 +19,14 @@ const Login = () => {
     const [user, setUser] = useRecoilState(userAtom);
 
     useEffect(() => {
-        auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged((user: UserType) => {
             setUser(user);
         });
     }, []);
 
     const handleLogin = () => {
         signInWithPopup(auth, provider)
-            .then((result) => {
+            .then((result: any) => {
                 GithubAuthProvider.credentialFromResult(result);
                 const user = result.user;
                 setUser(user);
@@ -40,14 +43,14 @@ const Login = () => {
                     transition: Bounce,
                 });
             })
-            .catch((error) => {
+            .catch((error: any) => {
                 console.log(error);
             });
     }
 
 
 
-    const handleOpen = (backdrop) => {
+    const handleOpen = (backdrop: string) => {
         setBackdrop(backdrop);
         onOpen();
     }

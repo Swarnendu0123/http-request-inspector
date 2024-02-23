@@ -3,11 +3,12 @@ const { v4: uuidv4 } = require('uuid');
 const cors = require('cors')
 const { BACKEND_URL, FRONTEND_URL } = require('./config');
 const app = express();
+import { Request, Response } from 'express';
 
 
 app.use(cors())
 app.use(express.json());
-app.use("/v1", (req, res, next) => {
+app.use("/v1", (req: Request, res: Response, next: () => void) => {
     if (req.rawHeaders.includes(FRONTEND_URL)) {
         next();
     } else {
@@ -16,11 +17,22 @@ app.use("/v1", (req, res, next) => {
 });
 
 
-let id = '';
+let id: string = '';
 
-const reqArray = [];
+type RequestProp = {
+    url: string;
+    method: string;
+    body:  Request['body'];
+    headers: Request['headers'];
+    query: Request['query'];
+    params: Request['params'];
+    index: number;
+    time: string;
+}
 
-const appendToStartIndex = (req) => {
+const reqArray: RequestProp[] = [];
+
+const appendToStartIndex = (req: RequestProp) => {
     reqArray.unshift({
         url: req.url,
         method: req.method,
@@ -35,14 +47,14 @@ const appendToStartIndex = (req) => {
 
 
 // gnerate random path
-app.get('/v1', (req, res) => {
+app.get('/v1', (req: Request, res: Response) => {
     const randomPath = uuidv4();
-    reqUrl = BACKEND_URL + '/req/' + randomPath;
+    const reqUrl = BACKEND_URL + '/req/' + randomPath;
     id = randomPath;
     res.send(reqUrl);
 });
 
-app.get("/req/:id", (req, res) => {
+app.get("/req/:id", (req: Request, res: Response) => {
     if (req.params.id === id) {
 
         appendToStartIndex({
@@ -66,7 +78,7 @@ app.get("/req/:id", (req, res) => {
 });
 
 
-app.post("/req/:id", (req, res) => {
+app.post("/req/:id", (req: Request, res: Response) => {
     if (req.params.id === id) {
         appendToStartIndex({
             url: req.url,
@@ -89,7 +101,7 @@ app.post("/req/:id", (req, res) => {
 });
 
 
-app.put("/req/:id", (req, res) => {
+app.put("/req/:id", (req: Request, res: Response) => {
     if (req.params.id === id) {
         appendToStartIndex({
             url: req.url,
@@ -112,7 +124,7 @@ app.put("/req/:id", (req, res) => {
 });
 
 
-app.delete("/req/:id", (req, res) => {
+app.delete("/req/:id", (req: Request, res: Response) => {
     if (req.params.id === id) {
         appendToStartIndex({
             url: req.url,
@@ -135,7 +147,7 @@ app.delete("/req/:id", (req, res) => {
 });
 
 
-app.patch("/req/:id", (req, res) => {
+app.patch("/req/:id", (req: Request, res: Response) => {
     if (req.params.id === id) {
         appendToStartIndex({
             url: req.url,
@@ -158,7 +170,7 @@ app.patch("/req/:id", (req, res) => {
 });
 
 
-app.get('/allreq', (req, res) => {
+app.get('/allreq', (req: Request, res: Response) => {
     res.json(reqArray);
 });
 

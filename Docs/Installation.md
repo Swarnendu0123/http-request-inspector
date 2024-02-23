@@ -43,11 +43,11 @@ To run the Request Analyzer locally, follow these steps:
 7. Now the front end is running on `http://localhost:5173`. The backend is running on `http://localhost:8000`.
 
 8. Go to `client\config.js` and set the `BACKEND_URL` to `http://localhost:8000`
-   ```
+   ```js
    export const BACKEND_URL = 'http://localhost:8000';
    ```
 9.  Go to `server\config.js` and select all and paste the code:
-    ```
+    ```js
     const BACKEND_URL = 'http://localhost:8000';
     const FRONTEND_URL = 'http://localhost:5173/';
 

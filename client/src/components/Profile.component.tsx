@@ -4,10 +4,11 @@ import { userAtom } from "../store/atoms/user.atom";
 import { signOut } from "firebase/auth";
 import { auth } from "./auth/firebase.config";
 import { Bounce, toast } from "react-toastify";
+import React from "react";
 
 const Profile = () => {
     const [user, setUser] = useRecoilState(userAtom);
-
+    console.log(user);
     const handleLogout = async () => {
         try {
             await signOut(auth);
