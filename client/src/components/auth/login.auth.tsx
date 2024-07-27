@@ -57,11 +57,12 @@ const Login = () => {
 
     return (
         <>
-            <div className="flex flex-wrap gap-3 ml-4 mr-4">
+            <div className="flex flex-wrap gap-3 ml-4 mr-4 relative">
 
-                {user ?
-                    <Profile />
-                    :
+                {user &&
+                // ?
+                //     <Profile />
+                //     :
                     <Button
                         key="blur"
                         variant="flat"
@@ -80,7 +81,7 @@ const Login = () => {
 
 
             </div>
-            <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose} className="py-3 px-4  items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-900 text-white  sm:col-span-9 col-span-12 flex justify-between">
+            <Modal backdrop={backdrop} isOpen={isOpen} onClose={onClose} className="absolute top-0 w-full h-screen py-3 px-4 items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-900 text-white  sm:col-span-9 col-span-12 flex justify-between">
                 <ModalContent>
                     {() => (
                         <>
@@ -93,7 +94,7 @@ const Login = () => {
 
                             </ModalBody>
                             <ModalFooter>
-                                {!user &&
+                                {user &&
                                     <Button color="primary" onPress={handleLogin} className="py-3 px-4 inline-flex items-center gap-x- text-sm font-semibold rounded-lg border border-transparent bg-white text-black hover:bg-gray-100">
                                         <FaGithub className="mr-3 w-7 h-7" />   Authenticate
                                     </Button>}
