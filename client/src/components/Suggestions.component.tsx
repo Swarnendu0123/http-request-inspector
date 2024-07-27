@@ -33,7 +33,7 @@ const Suggestions = () => {
     }
   }, [message]);
 
-  const parseSuggestions = (suggestionsArray) => {
+  const parseSuggestions = (suggestionsArray: string[]) => {
     return suggestionsArray.map((item) => {
       return dompurify.sanitize(marked.parse(item));
     });
