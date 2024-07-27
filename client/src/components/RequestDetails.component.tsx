@@ -1,13 +1,18 @@
 import { useRecoilValue } from "recoil";
 import selectedMessege from "../store/atoms/selectedReq.atom";
-import React from "react";
-const RequestDetails = () => {
+import React, { useState } from "react";
+
+import { JSONTree } from 'react-json-tree';
+
+
+
+const TableView = () => {
     const messege = useRecoilValue(selectedMessege);
     
     const { url, method, body, headers, params, query, time } = messege;
 
     return (
-        <div className="hide-scroll grid gap-4  max-h-[70vh] overflow-y-auto border border-gray-700 bg-gray-800 text-white">
+        <div className="hide-scroll grid gap-4  max-h-[70vh] overflow-y-auto border border-gray-700 bg-gray-800 text-white text-center">
             <div className="col-span-2 mt-2">
                 <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}
@@ -95,6 +100,76 @@ const RequestDetails = () => {
             
            
 
+        </div>
+    )
+}
+
+
+const RequestDetails = () => {
+    const messege = useRecoilValue(selectedMessege);
+    const [view, setView] = useState('json');
+    
+    const { url, method, body, headers, params, query, time } = messege;
+    const json = {
+        url: url,
+        method: method,
+        body: body,
+        headers: headers,
+        params: params,
+        query: query,
+        time: time
+      };
+
+      const theme = {
+        valueLabel: {
+            textDecoration: 'underline',
+          },
+        scheme: 'monokai',
+        author: 'wimer hazenberg (http://www.monokai.nl)',
+        base00: '#272822',
+        base01: '#383830',
+        base02: '#49483e',
+        base03: '#75715e',
+        base04: '#a59f85',
+        base05: '#f8f8f2',
+        base06: '#f5f4f1',
+        base07: '#f9f8f5',
+        base08: '#f92672',
+        base09: '#fd971f',
+        base0A: '#f4bf75',
+        base0B: '#a6e22e',
+        base0C: '#a1efe4',
+        base0D: '#66d9ef',
+        base0E: '#ae81ff',
+        base0F: '#cc6633',
+      };
+
+      const setViewHandler = (view) => {
+        setView(view);
+      }
+
+    return (
+        <div className=" grid border border-gray-700 bg-gray-800 text-white text-start">
+            
+            <div className="flex justify-start items-center ">
+                <div className="flex">
+                    <button className={`px-4 py-1  ${view === 'json' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('json')}>JSON</button>
+                    <button className={`px-4 py-1  ${view === 'raw' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('raw')}>RAW</button>
+                    <button className={`px-4 py-1  ${view === 'table' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('table')}>TABLE</button>
+                </div>
+            </div>
+           
+            <div className="overflow-y-auto hide-scroll max-h-[70vh]">
+            {
+                view === 'raw' ? <pre>{JSON.stringify(json, null, 2)}</pre> : null
+            }
+            {
+                view === 'json' ? <JSONTree data={json} theme={theme}/> : null
+            }
+            {
+                view === 'table' ? <TableView/> : null
+            }
+            </div>
         </div>
     )
 }
