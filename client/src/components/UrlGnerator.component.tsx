@@ -6,7 +6,9 @@ import allMesseges from "../store/atoms/allMeggeges.atom";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import selectedMessege from "../store/atoms/selectedReq.atom";
-import Button from "./Button.component";
+// import Button from "./Button.component";
+import { Button } from "@/components/ui/button"
+
 import React from "react";
 
 const UrlGnerator = () => {
@@ -36,8 +38,8 @@ const UrlGnerator = () => {
                 progress: undefined,
                 theme: "dark",
                 transition: Bounce,
-                });
-                return;
+            });
+            return;
         }
         setMesseges(res.data);
         setSelectedMessege(res.data[0])
@@ -57,12 +59,12 @@ const UrlGnerator = () => {
             progress: undefined,
             theme: "dark",
             transition: Bounce,
-            });
+        });
     }
 
     return (
-        <div className="grid grid-cols-12 gap-4 pb-3">
-            <div className="py-3 px-4  items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900 sm:col-span-9 col-span-12 flex justify-between">
+        <div className="flex items-center gap-6 mb-8">
+            <div className="w-full py-3 px-4 items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-gray-800 text-white hover:bg-gray-900 sm:col-span-9 col-span-12 flex justify-between">
                 {url}
                 <ToastContainer
                     position="bottom-right"
@@ -75,7 +77,7 @@ const UrlGnerator = () => {
                     draggable
                     pauseOnHover
                     theme="light"
-                    />
+                />
                 <button type="button" className="js-clipboard p-1 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border   shadow-sm  disabled:opacity-50 disabled:pointer-events-none bg-slate-900 border-gray-700 text-white hover:bg-gray-800 focus:outline-none focus:ring-1 focus:ring-gray-600"
                     onClick={handleCopy}>
                     <svg className="js-clipboard-default w-4 h-4 group-hover:rotate-6 transition" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1" /><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /></svg>
@@ -83,10 +85,10 @@ const UrlGnerator = () => {
             </div>
 
             <div className="sm:col-span-2 col-span-7">
-                <Button text="Generate endpoint URL" onClick={hanldeGnerate}/>
+                <Button onClick={hanldeGnerate}>Generate endpoint URL</Button>
             </div>
             <div className="sm:col-span-1 col-span-5">
-                <Button text="Refresh" onClick={handleRefresh}/>
+                <Button onClick={handleRefresh}>Refresh</Button>
             </div>
         </div>
     )

@@ -7,7 +7,7 @@ const RequestDetails = () => {
     const { url, method, body, headers, params, query, time } = messege;
 
     return (
-        <div className="hide-scroll grid gap-4  max-h-[70vh] overflow-y-auto border border-gray-700 bg-gray-800 text-white rounded-xl ">
+        <div className="hide-scroll grid gap-4  max-h-[70vh] overflow-y-auto border border-gray-700 bg-gray-800 text-white">
             <div className="col-span-2 mt-2">
                 <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}
