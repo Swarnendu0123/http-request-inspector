@@ -28,14 +28,13 @@ const Suggestions = () => {
 	};
 
 	return (
-		<div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white">
-			<h1 className="font-semibold">Suggestions</h1>
+		<div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
 			{loading ? (
 				<div className="w-[15rem]">Loading...</div>
 			) : (
-				<div className="text-start">
+				<div className="text-start max-h-[70vh]">
 					{suggestion.map((item, index) => {
-						return <Markdown className={""} key={index}>{item}</Markdown>;
+						return <Markdown className={"max-w-96 overflow-y-auto hide-scroll"} key={index}>{item}</Markdown>;
 					})}
 				</div>
 			)}

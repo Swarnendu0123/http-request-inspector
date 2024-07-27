@@ -103,8 +103,6 @@ async function enhanceRequest(request: RequestProp) {
 	const genAI = new GoogleGenerativeAI(GEMINI_API as string);
 	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-	console.log("Api key", GEMINI_API);
-
 	/// Generate content for the request
 	const prompt = `
 	  Here is a request object:
