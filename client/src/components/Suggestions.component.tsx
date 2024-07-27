@@ -1,46 +1,62 @@
-import { useRecoilValue } from "recoil";
-import selectedMessege from "../store/atoms/selectedReq.atom";
-import { BACKEND_URL } from "../../config";
 import React, { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
 import axios from "axios";
-import Markdown from "../../node_modules/react-markdown/index";
+import dompurify from "dompurify";
+import { marked } from "marked";
+import selectedMessage from "../store/atoms/selectedReq.atom";
+import { BACKEND_URL } from "../../config";
 
 const Suggestions = () => {
-	const messege = useRecoilValue(selectedMessege);
-	const [suggestion, setSuggestion] = useState([]);
-	const [loading, setLoading] = useState(false);
+  const message = useRecoilValue(selectedMessage);
+  const [suggestions, setSuggestions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		fetchSuggestions();
-	}, [messege]);
+  useEffect(() => {
+    const fetchSuggestions = async () => {
+      try {
+        setLoading(true);
+        const res = await axios.post(`${BACKEND_URL}/generate/enhance`, {
+          method: "POST",
+          body: { message },
+        });
+        const suggestionsArray = res.data.data.split("<br>");
+        setSuggestions(suggestionsArray);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	const fetchSuggestions = async () => {
-		setLoading(true);
-		const res = await axios.post(BACKEND_URL + "/generate/enhance", {
-			method: "POST",
-			body: { messege },
-		});
-		console.log(res);
+    if (message) {
+      fetchSuggestions();
+    }
+  }, [message]);
 
-		const suggestion = res.data.data.split("<br>");
-		setSuggestion(suggestion);
-		setLoading(false);
-	};
+  const parseSuggestions = (suggestionsArray) => {
+    return suggestionsArray.map((item) => {
+      return dompurify.sanitize(marked.parse(item));
+    });
+  };
 
-	return (
-		<div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
-			<p className="font-bold text-center">Suggisions to improve your code</p>
-			{loading ? (
-				<div className="w-[15rem]">Generating Suggisions...</div>
-			) : (
-				<div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll">
-					{suggestion.map((item, index) => {
-						return <Markdown className={""} key={index}>{item}</Markdown>;
-					})}
-				</div>
-			)}
-		</div>
-	);
+  return (
+    <div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
+      <p className="font-bold text-center">Suggestions to improve your code</p>
+      {loading ? (
+        <div className="w-[15rem]">Generating Suggestions...</div>
+      ) : (
+        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll no-tailwindcss">
+          {parseSuggestions(suggestions).map((item, index) => (
+            <div
+              className="prose dark:prose-invert"
+              key={index}
+              dangerouslySetInnerHTML={{ __html: item }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Suggestions;
