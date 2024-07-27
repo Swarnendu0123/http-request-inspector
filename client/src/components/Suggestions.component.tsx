@@ -41,11 +41,10 @@ const Suggestions = () => {
 
   return (
     <div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
-      <p className="font-bold text-center">Suggestions to improve your code</p>
       {loading ? (
         <div className="w-[15rem]">Generating Suggestions...</div>
       ) : (
-        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll no-tailwindcss">
+        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll">
           {parseSuggestions(suggestions).map((item, index) => (
             <div
               className="prose dark:prose-invert"
