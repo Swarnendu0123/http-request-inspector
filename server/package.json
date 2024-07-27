@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
 	"name": "server",
 	"version": "1.0.0",
 	"description": "",
@@ -31,27 +30,4 @@
 		"tsx": "^4.16.2",
 		"typescript": "^5.5.4"
 	}
-=======
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon index.ts",
-    "start": "node index.ts"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "nodemon": "^3.1.4",
-    "ts-node": "^10.9.2",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.11.20"
-  }
->>>>>>> a48d6912ba9fde71b5ff8d67d42d4524deb5ef50
 }
