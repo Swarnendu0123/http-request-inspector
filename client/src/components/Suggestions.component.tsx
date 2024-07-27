@@ -43,7 +43,7 @@ const Suggestions = () => {
       {loading ? (
         <div className="w-[15rem]">Generating Suggestions...</div>
       ) : (
-        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll no-tailwindcss">
+        <div className="text-start p-2 max-h-[70vh] overflow-y-auto hide-scroll no-tailwindcss">
           <div
             className="prose dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: parsedSuggestion }}
