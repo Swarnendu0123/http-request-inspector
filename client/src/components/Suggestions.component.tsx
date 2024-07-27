@@ -8,7 +8,7 @@ import { BACKEND_URL } from "../../config";
 
 const Suggestions = () => {
   const message = useRecoilValue(selectedMessage);
-  const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -19,8 +19,10 @@ const Suggestions = () => {
           method: "POST",
           body: { message },
         });
-        const suggestionsArray = res.data.data.split("<br>");
-        setSuggestions(suggestionsArray);
+        let suggestionString = res.data.data;
+		//  replace <br> with \n
+		suggestionString = suggestionString.replace(/<br>/g, "\n");
+        setSuggestions(suggestionString);
       } catch (error) {
         console.error("Error fetching suggestions:", error);
       } finally {
@@ -33,25 +35,19 @@ const Suggestions = () => {
     }
   }, [message]);
 
-  const parseSuggestions = (suggestionsArray: string[]) => {
-    return suggestionsArray.map((item) => {
-      return dompurify.sanitize(marked.parse(item));
-    });
-  };
+  const parsedSuggestion = dompurify.sanitize(marked.parse(suggestions));
 
   return (
     <div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
+      <p className="font-bold text-center">Suggestions to improve your code</p>
       {loading ? (
         <div className="w-[15rem]">Generating Suggestions...</div>
       ) : (
-        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll">
-          {parseSuggestions(suggestions).map((item, index) => (
-            <div
-              className="prose dark:prose-invert"
-              key={index}
-              dangerouslySetInnerHTML={{ __html: item }}
-            />
-          ))}
+        <div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll no-tailwindcss">
+          <div
+            className="prose dark:prose-invert"
+            dangerouslySetInnerHTML={{ __html: parsedSuggestion }}
+          />
         </div>
       )}
     </div>
