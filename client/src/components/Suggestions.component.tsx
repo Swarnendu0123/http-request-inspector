@@ -30,11 +30,11 @@ const Suggestions = () => {
 	return (
 		<div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
 			{loading ? (
-				<div className="w-[15rem]">Loading...</div>
+				<div className="w-[15rem]">Generating Suggisions...</div>
 			) : (
-				<div className="text-start max-h-[70vh]">
+				<div className="text-start max-w-96 max-h-[70vh] overflow-y-auto hide-scroll">
 					{suggestion.map((item, index) => {
-						return <Markdown className={"max-w-96 overflow-y-auto hide-scroll"} key={index}>{item}</Markdown>;
+						return <Markdown className={""} key={index}>{item}</Markdown>;
 					})}
 				</div>
 			)}
