@@ -39,7 +39,7 @@ const Suggestions = () => {
 
   return (
     <div className="hide-scroll w-full grid justify-center gap-4 overflow-y-auto border h-full border-gray-700 bg-gray-800 text-white text-start">
-      <p className="font-bold text-center">Suggestions to improve your code</p>
+      <p className="font-bold text-center flex  justify-center">Suggestions to improve your code</p>
       {loading ? (
         <div className="w-[15rem]">Generating Suggestions...</div>
       ) : (
