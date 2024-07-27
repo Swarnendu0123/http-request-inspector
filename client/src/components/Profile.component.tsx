@@ -3,7 +3,7 @@ import { Avatar } from "@nextui-org/react";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user.atom";
 import { signOut } from "firebase/auth";
-import { auth } from "./auth/firebase.config";
+import { auth } from "./auth/firebase";
 import { Bounce, toast } from "react-toastify";
 import React from "react";
 
