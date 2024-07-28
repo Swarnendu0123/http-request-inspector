@@ -7,6 +7,9 @@ import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import selectedMessege from "../store/atoms/selectedReq.atom";
 import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react";
+import { User } from "firebase/auth";
+import { auth } from "./auth/firebase.config";
 
 
 const UrlGnerator = () => {
@@ -14,12 +17,26 @@ const UrlGnerator = () => {
     const setSelectedMessege = useSetRecoilState(selectedMessege);
     const setMesseges = useSetRecoilState(allMesseges);
 
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+
+        return () => unsubscribe();
+    }, [setUser]);
+
     const hanldeGnerate = async () => {
         try {
-            const res = await axios.get(BACKEND_URL + "/v1");
+            // const res = await axios.get(BACKEND_URL + "/v1");
+            const res = await axios.post(`${BACKEND_URL}/v1`, {
+                name: user?.displayName,
+                email: user?.email,
+            });
             setUrl(res.data);
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 

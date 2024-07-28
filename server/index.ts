@@ -1,17 +1,32 @@
+import dotenv from "dotenv";
 import express, { Request, Response } from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 const { v4: uuidv4 } = require("uuid");
-import dotenv from "dotenv";
 import generateRouter from "./routes/suggestion.route";
 
 dotenv.config();
 
 const { BACKEND_URL, FRONTEND_URL } = require("./config");
+const MONGODB_URL = process.env.MONGODB_URL || "mongodb://localhost:27017/http-request-inspector";
+
+const userModel = require("./database/user.model");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Connect to MongoDB
+async function connectToMongoDB() {
+  try {
+    await mongoose.connect(MONGODB_URL);
+    console.log('Connected to database');
+  } catch (err) {
+    console.error('Error connecting to database', err);
+  }
+}
+connectToMongoDB();
 
 app.use("/v1", (req: Request, res: Response, next: () => void) => {
   if (req.headers.origin === FRONTEND_URL) {
@@ -41,7 +56,7 @@ export type RequestProp = {
 
 const reqArray: RequestProp[] = [];
 
-const appendToStartIndex = (req: Request) => {	
+const appendToStartIndex = (req: Request) => {
   const newRequest: RequestProp = {
     url: req.url,
     method: req.method,
@@ -51,19 +66,40 @@ const appendToStartIndex = (req: Request) => {
     params: req.params,
     index: reqArray.length,
     time: new Date().toLocaleTimeString(),
-	clientSide: "",
-	serverSide: "",
+    clientSide: "",
+    serverSide: "",
   };
   reqArray.unshift(newRequest);
 };
 
 // Generate random path
-app.get("/v1", (req: Request, res: Response) => {
+// app.get("/v1", (req: Request, res: Response) => {
+//   const randomPath = uuidv4();
+//   const reqUrl = `${BACKEND_URL}/req/${randomPath}`;
+//   id = randomPath;
+//   res.send(reqUrl);
+// });
+
+app.post("/v1", async (req: Request, res: Response) => {
+  const name = req.body.name;
+  const email = req.body.email;
+
   const randomPath = uuidv4();
   const reqUrl = `${BACKEND_URL}/req/${randomPath}`;
   id = randomPath;
+
+  const existingUser = await userModel.findOne({ name, email });
+  if (!existingUser) {
+    await userModel.create({
+      name: name,
+      email: email,
+      genratedURL: reqUrl,
+      requests: []
+    });
+  }
   res.send(reqUrl);
-});
+
+})
 
 const handleRequest = (req: Request, res: Response) => {
   if (req.params.id === id) {
