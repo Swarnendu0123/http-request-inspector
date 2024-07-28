@@ -40,12 +40,12 @@ const UrlGnerator = () => {
         }
     }
 
-    // if user exist call handleRefresh in every 3 seconds
+    // if user exist call handleRefresh in every 2 seconds
     useEffect(() => {
         if (user) {
             const interval = setInterval(() => {
                 handleRefresh();
-            }, 3000);
+            }, 2000);
             return () => clearInterval(interval);
         }
     }, [user]);
