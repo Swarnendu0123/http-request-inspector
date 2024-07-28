@@ -63,10 +63,12 @@ const Suggestions = () => {
         </p>
         <p className="flex justify-center  items-center">
           <div className="flex justify-between">
-            <div className="p-2">
-              <div>
-                Client side framework/library:
-                <select name="" id="" className="bg-gray-800 border-gray-100 rounded-sm font-bold" onChange={handleClientSideChange}>
+            <div className="p-2 flex">
+              <div className="m-2 flex" >
+                <p className="p-2">
+                Client:
+                </p>
+                <select name="" id="" className={`px-4 py-1 bg-blue-500`} onChange={handleClientSideChange}>
                   <option value="react-axios">React.js + Axios</option>
                   <option value="react-fetch">React.js + Fetch</option>
                   <option value="react-fetch">Next.js</option>
@@ -74,9 +76,11 @@ const Suggestions = () => {
                   <option value="angular">Angular</option>
                 </select>
               </div>
-              <div>
-                Server side framework/library:
-                <select name="" id="" className="bg-gray-800 border-gray-100 rounded-sm font-bold" onChange={handleServerSideChange}>
+              <div className="m-2 flex"> 
+                <p className="p-2">
+                Server:
+                </p>
+                <select name="" id="" className={`px-4 py-1 bg-blue-500`} onChange={handleServerSideChange}>
                   <option value="express">Express.js</option>
                   <option value="next">Next.js</option>
                   <option value="node">Node.js</option>
@@ -102,7 +106,7 @@ const Suggestions = () => {
           Generating Suggestions...
         </div>
       ) : (
-        <div className="text-start p-2 h-[65vh] max-h-[65vh] overflow-y-auto hide-scroll no-tailwindcss">
+        <div className="text-start p-2 h-[60vh] max-h-[60vh] overflow-y-auto hide-scroll no-tailwindcss">
           <div
             className="prose dark:prose-invert"
             dangerouslySetInnerHTML={{ __html: parsedSuggestion }}
