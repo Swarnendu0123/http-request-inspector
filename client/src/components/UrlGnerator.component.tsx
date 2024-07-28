@@ -124,9 +124,9 @@ const UrlGnerator = () => {
             <div className="sm:col-span-2 col-span-7">
                 <Button onClick={hanldeGnerate}>Generate endpoint URL</Button>
             </div>
-            <div className="sm:col-span-1 col-span-5">
+            {/* <div className="sm:col-span-1 col-span-5">
                 <Button onClick={handleRefresh}>Sync</Button>
-            </div>
+            </div> */}
         </div>
     )
 }
