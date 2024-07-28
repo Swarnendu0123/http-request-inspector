@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
 import { auth } from "./auth/firebase.config";
+import { use } from "marked";
 
 
 const UrlGnerator = () => {
@@ -39,6 +40,16 @@ const UrlGnerator = () => {
         }
     }
 
+    // if user exist call handleRefresh in every 3 seconds
+    useEffect(() => {
+        if (user) {
+            const interval = setInterval(() => {
+                handleRefresh();
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [user]);
+
     const handleRefresh = async () => {
         const res = await axios.post(`${BACKEND_URL}/allreq`, {
             name: user?.displayName,
@@ -67,6 +78,8 @@ const UrlGnerator = () => {
             handleRefresh();
         }
     }, [user]);
+
+
 
     const handleCopy = () => {
         const copyText = url;
