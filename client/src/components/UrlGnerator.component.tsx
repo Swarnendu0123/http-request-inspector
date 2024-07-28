@@ -29,7 +29,6 @@ const UrlGnerator = () => {
 
     const hanldeGnerate = async () => {
         try {
-            // const res = await axios.get(BACKEND_URL + "/v1");
             const res = await axios.post(`${BACKEND_URL}/v1`, {
                 name: user?.displayName,
                 email: user?.email,
@@ -41,7 +40,10 @@ const UrlGnerator = () => {
     }
 
     const handleRefresh = async () => {
-        const res = await axios.get(BACKEND_URL + "/allreq")
+        const res = await axios.post(`${BACKEND_URL}/allreq`, {
+            name: user?.displayName,
+            email: user?.email,
+        })
         if (res.data.length === 0) {
             toast.error('NO request found', {
                 position: "bottom-right",
@@ -60,6 +62,11 @@ const UrlGnerator = () => {
         setSelectedMessege(res.data[0])
     }
 
+    useEffect(() => {
+        if (user) {
+            handleRefresh();
+        }
+    }, [user]);
 
     const handleCopy = () => {
         const copyText = url;

@@ -59,7 +59,7 @@ const Suggestions = () => {
     setServerSide(e.target.value);
   }
 
-  console.log(clientSide, serverSide);
+  // console.log(clientSide, serverSide);
 
   return (
     <div className="hide-scroll w-full flex flex-col gap-4 overflow-y-auto border border-gray-700 bg-gray-800 text-white text-start h-[80vh]">

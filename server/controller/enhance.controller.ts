@@ -8,7 +8,7 @@ import { google } from "@ai-sdk/google";
 async function enhance(req: Request, res: any) {
 	try {
 		const RequestProp: any = req.body;
-		console.log(RequestProp);
+		// console.log(RequestProp);
 		
 		const response = await enhanceRequest(RequestProp);
 
@@ -40,7 +40,7 @@ async function enhanceRequest(request: RequestProp) {
 
 
 	/// Generate content for the request
-	console.log(request.body);
+	// console.log(request.body);
 	
 	const prompt = `
 	  Here is a request object:

@@ -48,15 +48,12 @@ export type RequestProp = {
   headers: Request["headers"];
   query: Request["query"];
   params: Request["params"];
-  index: number;
   time: string;
   clientSide: string,
   serverSide: string
 };
 
-const reqArray: RequestProp[] = [];
-
-const appendToStartIndex = (req: Request) => {
+const appendToStartIndex = async (req: Request, reqURL: String) => {
   const newRequest: RequestProp = {
     url: req.url,
     method: req.method,
@@ -64,22 +61,18 @@ const appendToStartIndex = (req: Request) => {
     headers: req.headers,
     query: req.query,
     params: req.params,
-    index: reqArray.length,
     time: new Date().toLocaleTimeString(),
     clientSide: "",
     serverSide: "",
   };
-  reqArray.unshift(newRequest);
+  const user = await userModel.findOne({ genratedURL: reqURL });
+  if (user) {
+    user.requests.push(newRequest);
+    await user.save();
+  }
 };
 
 // Generate random path
-// app.get("/v1", (req: Request, res: Response) => {
-//   const randomPath = uuidv4();
-//   const reqUrl = `${BACKEND_URL}/req/${randomPath}`;
-//   id = randomPath;
-//   res.send(reqUrl);
-// });
-
 app.post("/v1", async (req: Request, res: Response) => {
   const name = req.body.name;
   const email = req.body.email;
@@ -97,13 +90,17 @@ app.post("/v1", async (req: Request, res: Response) => {
       requests: []
     });
   }
+  else {
+    await userModel.findOneAndUpdate({ name, email }, { genratedURL: reqUrl });
+  }
   res.send(reqUrl);
 
 })
 
 const handleRequest = (req: Request, res: Response) => {
   if (req.params.id === id) {
-    appendToStartIndex(req);
+    const reqURL = `${BACKEND_URL}/req/${id}`;
+    appendToStartIndex(req, reqURL);
     res.json({
       status: "success",
       message: `Go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`,
@@ -119,8 +116,17 @@ app.put("/req/:id", handleRequest);
 app.delete("/req/:id", handleRequest);
 app.patch("/req/:id", handleRequest);
 
-app.get("/allreq", (req: Request, res: Response) => {
-  res.json(reqArray);
+app.post("/allreq", async (req: Request, res: Response) => {
+  const name = req.body.name;
+  const email = req.body.email;
+
+  const user = await userModel.findOne({ name, email});
+  if (user) {
+    res.json(user.requests);
+  }
+  else {
+    res.json([]);
+  }
 });
 
 app.use("/generate", generateRouter);
