@@ -62,8 +62,8 @@ const Suggestions = () => {
           Suggestions to improve your code
         </p>
         <p className="flex justify-center  items-center">
-          <div className="flex justify-between">
-            <div className="p-2 flex">
+          <div className="flex justify-between flex-wrap">
+            <div className="p-2 flex flex-wrap">
               <div className="m-2 flex" >
                 <p className="p-2">
                 Client:
