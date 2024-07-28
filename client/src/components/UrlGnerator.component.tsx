@@ -70,7 +70,8 @@ const UrlGnerator = () => {
             });
             return;
         }
-        setMesseges(res.data);
+        // res.data in reverse order
+        setMesseges(res.data.reverse());
         setSelectedMessege(res.data[0])
     }
 
