@@ -19,7 +19,7 @@ const Navbar = () => {
         <h1 className="flex-auto mb-6 text-2xl sm:text-4xl font-bold ">
           
         </h1>
-        <Login/>
+        {/* <Login/> */}
       </div>
     </div>
   );
