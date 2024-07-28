@@ -40,11 +40,6 @@ const Suggestions = () => {
   };
 
 
-  useEffect(() => {
-    if (message) {
-      fetchSuggestions();
-    }
-  }, [message]);
 
   useEffect(() => {
     const parsedSuggestion = dompurify.sanitize(marked.parse(suggestions));
