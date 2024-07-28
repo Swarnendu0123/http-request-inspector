@@ -91,7 +91,7 @@ const Suggestions = () => {
                   <option value="java">Java</option>
                   <option value="cpp">C++</option>
                   <option value="c">C</option>
-                  <option value="move">Move</option>
+                  <option value="solidity">Solidity</option>
                 </select>
               </div>
             </div>
