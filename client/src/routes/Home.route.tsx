@@ -15,11 +15,11 @@ const HomeRoute = () => {
                 <ResizablePanel defaultSize={25}>
                     <RequestContainer />
                 </ResizablePanel>
-                <ResizableHandle withHandle />
+                <ResizableHandle withHandle className="z-[1]"/>
                 <ResizablePanel>
                     <RequestDetails />
                 </ResizablePanel>
-                <ResizableHandle withHandle />
+                <ResizableHandle withHandle className="z-[1]" />
                 <ResizablePanel defaultSize={30}>
                     <Suggestions />
                 </ResizablePanel>

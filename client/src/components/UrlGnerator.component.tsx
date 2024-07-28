@@ -1,15 +1,13 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
 import reqUrl from "../store/atoms/reqUlr.atom";
-import { BACKEND_URL } from "../../config";
+import { BACKEND_URL } from "../config";
 import axios from 'axios';
 import allMesseges from "../store/atoms/allMeggeges.atom";
 import { Bounce, ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import selectedMessege from "../store/atoms/selectedReq.atom";
-// import Button from "./Button.component";
 import { Button } from "@/components/ui/button"
 
-import React from "react";
 
 const UrlGnerator = () => {
     const [url, setUrl] = useRecoilState(reqUrl);
@@ -88,7 +86,7 @@ const UrlGnerator = () => {
                 <Button onClick={hanldeGnerate}>Generate endpoint URL</Button>
             </div>
             <div className="sm:col-span-1 col-span-5">
-                <Button onClick={handleRefresh}>Refresh</Button>
+                <Button onClick={handleRefresh}>Sync</Button>
             </div>
         </div>
     )

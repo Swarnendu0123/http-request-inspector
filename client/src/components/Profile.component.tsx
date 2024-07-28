@@ -1,32 +1,30 @@
-// import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Avatar } from "@nextui-org/react";
-import { Avatar } from "@nextui-org/react";
-import { useRecoilState } from "recoil";
-import { userAtom } from "../store/atoms/user.atom";
-import { signOut } from "firebase/auth";
+import { signOut, User } from "firebase/auth";
 import { auth } from "./auth/firebase.config";
 import { Bounce, toast } from "react-toastify";
-import React from "react";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuPortal,
-    DropdownMenuSeparator,
-    DropdownMenuShortcut,
-    DropdownMenuSub,
-    DropdownMenuSubContent,
-    DropdownMenuSubTrigger,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useState, useEffect } from "react";
 
 
 const Profile = () => {
-    const [user, setUser] = useRecoilState(userAtom);
-    console.log(user);
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setUser(user);
+        });
+
+        return () => unsubscribe();
+    }, [setUser]);
+
     const handleLogout = async () => {
         try {
             await signOut(auth);
@@ -48,199 +46,56 @@ const Profile = () => {
     };
 
     return (
-        <div className="flex items-center gap-4">
-            <DropdownMenu>
-                <DropdownMenuTrigger>
-                    <div className="flex gap-4 cursor-pointer">
-                        <div>
-                            <Avatar src={user.photoURL} alt={user.displayName} />
-                        </div>
-                        <div className="flex items-center">
-                            <p>{user.displayName}</p>
-                        </div>
-                    </div>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="p-4">
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                   <div className="mt-2 border-t py-2">
-                   <DropdownMenuItem>
-                    <span className="">{user.email}</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                    <span>History</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                    <span>Saved Domains</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                    <span>How to use</span>
-                    </DropdownMenuItem>
-                    <Button className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-center font-semibold" onClick={handleLogout}>
-                        Log Out
-                    </Button>
-                   </div>
-                </DropdownMenuContent>
-            </DropdownMenu>
-           <Dropdown placement="bottom-end">
-            </Dropdown>
-            <Dropdown placement="bottom-start">
-                <DropdownTrigger>
-                    <div className="flex gap-4 cursor-pointer">
-                        <div>
-                            <Avatar src={user.photoURL} alt={user.displayName} />
-                        </div>
-                        <div className="flex items-center">
-                            <p>{user.displayName}</p>
-                        </div>
-                    </div>
-                    
-                </DropdownTrigger>
-                <DropdownMenu aria-label="User Actions" variant="flat" className="py-3 px-4  items-center gap-x-2 text-sm rounded-lg border border-transparent  text-white bg-gray-900 sm:col-span-9 col-span-12 flex justify-between">
-                    <DropdownItem key="profile" className="h-14 gap-2">
-                        <p className="font-bold">Signed in as</p>
-                        <p className="font-bold">{user.email}</p>
-                    </DropdownItem>
-                    <DropdownItem key="settings">
-                        History
-                    </DropdownItem>
-                    <DropdownItem key="analytics">
-                        Saved Domains
-                    </DropdownItem>
-                    <DropdownItem key="configurations">
-                        How to use
-                    </DropdownItem>
-                    <DropdownItem key="logout" color="danger" className="bg-red-600 rounded-lg text-center font-semibold" onClick={handleLogout}>
-                        Log Out
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown> 
-        </div>
+        <>
+            {user && (
+                <div className="flex items-center gap-4">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger>
+                            <div className="flex gap-4 cursor-pointer">
+                                <Avatar>
+                                    <AvatarImage src={user?.photoURL ?? undefined} alt={user?.displayName ?? 'User'} />
+                                    <AvatarFallback>
+                                        <div className="size-[46px] bg-gray-900 rounded-full overflow-hidden cursor-pointer">
+                                            <svg className="size-full text-gray-700" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <rect x="0.62854" y="0.359985" width="15" height="15" rx="7.5" fill="white" />
+                                                <path d="M8.12421 7.20374C9.21151 7.20374 10.093 6.32229 10.093 5.23499C10.093 4.14767 9.21151 3.26624 8.12421 3.26624C7.0369 3.26624 6.15546 4.14767 6.15546 5.23499C6.15546 6.32229 7.0369 7.20374 8.12421 7.20374Z" fill="currentColor" />
+                                                <path d="M11.818 10.5975C10.2992 12.6412 7.42106 13.0631 5.37731 11.5537C5.01171 11.2818 4.69296 10.9631 4.42107 10.5975C4.28982 10.4006 4.27107 10.1475 4.37419 9.94123L4.51482 9.65059C4.84296 8.95684 5.53671 8.51624 6.30546 8.51624H9.95231C10.7023 8.51624 11.3867 8.94749 11.7242 9.62249L11.8742 9.93184C11.968 10.1475 11.9586 10.4006 11.818 10.5975Z" fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                    </AvatarFallback>
+                                </Avatar>
+
+                                <div className="flex items-center">
+                                    <p>{user.displayName}</p>
+                                </div>
+                            </div>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="p-4">
+                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                            <div className="mt-2 border-t py-2">
+                                <DropdownMenuItem>
+                                    <span className="">{user.email}</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <span>History</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <span>Saved Domains</span>
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <span>How to use</span>
+                                </DropdownMenuItem>
+                                <Button className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-center font-semibold" onClick={handleLogout}>
+                                    Log Out
+                                </Button>
+                            </div>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+            )}
+        </>
     );
 }
 
 
 export default Profile;
-
-// import {
-//     Cloud,
-//     CreditCard,
-//     Github,
-//     Keyboard,
-//     LifeBuoy,
-//     LogOut,
-//     Mail,
-//     MessageSquare,
-//     Plus,
-//     PlusCircle,
-//     Settings,
-//     User,
-//     UserPlus,
-//     Users,
-//   } from "lucide-react"
-  
-//   import { Button } from "@/components/ui/button"
-//   import {
-//     DropdownMenu,
-//     DropdownMenuContent,
-//     DropdownMenuGroup,
-//     DropdownMenuItem,
-//     DropdownMenuLabel,
-//     DropdownMenuPortal,
-//     DropdownMenuSeparator,
-//     DropdownMenuShortcut,
-//     DropdownMenuSub,
-//     DropdownMenuSubContent,
-//     DropdownMenuSubTrigger,
-//     DropdownMenuTrigger,
-//   } from "@/components/ui/dropdown-menu"
-  
-//   export function DropdownMenuDemo() {
-//     return (
-//       <DropdownMenu>
-//         <DropdownMenuTrigger asChild>
-//           <Button variant="outline">Open</Button>
-//         </DropdownMenuTrigger>
-//         <DropdownMenuContent className="w-56">
-//           <DropdownMenuLabel>My Account</DropdownMenuLabel>
-//           <DropdownMenuSeparator />
-//           <DropdownMenuGroup>
-            // <DropdownMenuItem>
-            //   <User className="mr-2 h-4 w-4" />
-            //   <span>Profile</span>
-            //   <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-            // </DropdownMenuItem>
-//             <DropdownMenuItem>
-//               <CreditCard className="mr-2 h-4 w-4" />
-//               <span>Billing</span>
-//               <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-//             </DropdownMenuItem>
-//             <DropdownMenuItem>
-//               <Settings className="mr-2 h-4 w-4" />
-//               <span>Settings</span>
-//               <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-//             </DropdownMenuItem>
-//             <DropdownMenuItem>
-//               <Keyboard className="mr-2 h-4 w-4" />
-//               <span>Keyboard shortcuts</span>
-//               <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-//             </DropdownMenuItem>
-//           </DropdownMenuGroup>
-//           <DropdownMenuSeparator />
-//           <DropdownMenuGroup>
-//             <DropdownMenuItem>
-//               <Users className="mr-2 h-4 w-4" />
-//               <span>Team</span>
-//             </DropdownMenuItem>
-//             <DropdownMenuSub>
-//               <DropdownMenuSubTrigger>
-//                 <UserPlus className="mr-2 h-4 w-4" />
-//                 <span>Invite users</span>
-//               </DropdownMenuSubTrigger>
-//               <DropdownMenuPortal>
-//                 <DropdownMenuSubContent>
-//                   <DropdownMenuItem>
-//                     <Mail className="mr-2 h-4 w-4" />
-//                     <span>Email</span>
-//                   </DropdownMenuItem>
-//                   <DropdownMenuItem>
-//                     <MessageSquare className="mr-2 h-4 w-4" />
-//                     <span>Message</span>
-//                   </DropdownMenuItem>
-//                   <DropdownMenuSeparator />
-//                   <DropdownMenuItem>
-//                     <PlusCircle className="mr-2 h-4 w-4" />
-//                     <span>More...</span>
-//                   </DropdownMenuItem>
-//                 </DropdownMenuSubContent>
-//               </DropdownMenuPortal>
-//             </DropdownMenuSub>
-//             <DropdownMenuItem>
-//               <Plus className="mr-2 h-4 w-4" />
-//               <span>New Team</span>
-//               <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
-//             </DropdownMenuItem>
-//           </DropdownMenuGroup>
-//           <DropdownMenuSeparator />
-//           <DropdownMenuItem>
-//             <Github className="mr-2 h-4 w-4" />
-//             <span>GitHub</span>
-//           </DropdownMenuItem>
-//           <DropdownMenuItem>
-//             <LifeBuoy className="mr-2 h-4 w-4" />
-//             <span>Support</span>
-//           </DropdownMenuItem>
-//           <DropdownMenuItem disabled>
-//             <Cloud className="mr-2 h-4 w-4" />
-//             <span>API</span>
-//           </DropdownMenuItem>
-//           <DropdownMenuSeparator />
-//           <DropdownMenuItem>
-//             <LogOut className="mr-2 h-4 w-4" />
-//             <span>Log out</span>
-//             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
-//           </DropdownMenuItem>
-//         </DropdownMenuContent>
-//       </DropdownMenu>
-//     )
-//   }
-  
