@@ -3,7 +3,7 @@ import { Avatar } from "@nextui-org/react";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../store/atoms/user.atom";
 import { signOut } from "firebase/auth";
-import { auth } from "./auth/firebase";
+import { auth } from "./auth/firebase.config";
 import { Bounce, toast } from "react-toastify";
 import React from "react";
 
@@ -81,7 +81,7 @@ const Profile = () => {
                    </div>
                 </DropdownMenuContent>
             </DropdownMenu>
-            {/* <Dropdown placement="bottom-end">
+           <Dropdown placement="bottom-end">
             </Dropdown>
             <Dropdown placement="bottom-start">
                 <DropdownTrigger>
@@ -113,7 +113,7 @@ const Profile = () => {
                         Log Out
                     </DropdownItem>
                 </DropdownMenu>
-            </Dropdown> */}
+            </Dropdown> 
         </div>
     );
 }

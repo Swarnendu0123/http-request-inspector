@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import { FaGithub } from "react-icons/fa";
 import { auth } from "./firebase.config";
-import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, signInWithPopup, User } from "firebase/auth";
 import { useRecoilState } from "recoil";
 import { userAtom } from "../../store/atoms/user.atom";
 import { Bounce, toast } from "react-toastify";
 import Profile from "../Profile.component";
-import { UserType } from "../../types/types";
-import React from "react";
+
+
 
 
 const provider = new GithubAuthProvider();
@@ -19,7 +19,7 @@ const Login = () => {
     const [user, setUser] = useRecoilState(userAtom);
 
     useEffect(() => {
-        auth.onAuthStateChanged((user: UserType) => {
+        auth.onAuthStateChanged((user: User) => {
             setUser(user);
         });
     }, []);
@@ -59,11 +59,8 @@ const Login = () => {
         <>
             <div className="flex flex-wrap gap-3 ml-4 mr-4 relative">
 
-                {user &&
-                // ?
-                //     <Profile />
-                //     :
-                    <Button
+                {user ?
+                    <Profile /> : <Button
                         key="blur"
                         variant="flat"
                         color="warning"

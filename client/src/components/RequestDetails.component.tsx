@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 import selectedMessege from "../store/atoms/selectedReq.atom";
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { JSONTree } from 'react-json-tree';
 
