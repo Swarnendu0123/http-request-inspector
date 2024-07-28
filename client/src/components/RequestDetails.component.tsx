@@ -8,7 +8,7 @@ import { JSONTree } from 'react-json-tree';
 
 const TableView = () => {
     const messege = useRecoilValue(selectedMessege);
-    
+
     const { url, method, body, headers, params, query, time } = messege;
 
     return (
@@ -37,12 +37,12 @@ const TableView = () => {
             <div className="col-span-2">
                 {url}
             </div>
-            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Params</div>
+            <div className="col-span-2 text-white font-bold text-xl">Request Params</div>
             {
                 Object.keys(params).map((key, index) => {
                     return (
                         <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-900">
-                            <div className="col-span-1">
+                            <div className="col-span-1 font-bold">
                                 {key}
                             </div>
                             <div className="col-span-1">
@@ -52,12 +52,12 @@ const TableView = () => {
                     )
                 })
             }
-            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Query</div>
+            <div className="col-span-2 text-white font-bold text-xl">Request Query</div>
             {
                 Object.keys(query).map((key, index) => {
                     return (
                         <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-900">
-                            <div className="col-span-1">
+                            <div className="col-span-1 font-bold">
                                 {key}
                             </div>
                             <div className="col-span-1">
@@ -67,12 +67,12 @@ const TableView = () => {
                     )
                 })
             }
-            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Body</div>
+            <div className="col-span-2 text-white font-bold text-xl">Request Body</div>
             {
                 Object.keys(body).map((key, index) => {
                     return (
                         <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-900">
-                            <div className="col-span-1">
+                            <div className="col-span-1 font-bold">
                                 {key}
                             </div>
                             <div className="col-span-1">
@@ -82,23 +82,23 @@ const TableView = () => {
                     )
                 })
             }
-            <div className="col-span-2 bg-gray-800 text-white font-bold">Request Headers</div>
+            <div className="col-span-2 text-white font-bold text-xl">Request Headers</div>
             {
                 Object.keys(headers).map((key, index) => {
                     return (
                         <div key={index} className="grid grid-cols-2 col-span-2 border border-gray-700 hover:bg-gray-900">
-                            <div className="col-span-1">
+                            <div className="col-span-1 font-bold">
                                 {key}
                             </div>
-                            <div className="col-span-1">
+                            <div className="col-span-1 break-words">
                                 {headers[key]}
                             </div>
                         </div>
                     )
                 })
             }
-            
-           
+
+
 
         </div>
     )
@@ -108,7 +108,7 @@ const TableView = () => {
 const RequestDetails = () => {
     const messege = useRecoilValue(selectedMessege);
     const [view, setView] = useState('json');
-    
+
     const { url, method, body, headers, params, query, time } = messege;
     const json = {
         url: url,
@@ -118,12 +118,12 @@ const RequestDetails = () => {
         params: params,
         query: query,
         time: time
-      };
+    };
 
-      const theme = {
+    const theme = {
         valueLabel: {
             textDecoration: 'underline',
-          },
+        },
         scheme: 'monokai',
         author: 'wimer hazenberg (http://www.monokai.nl)',
         base00: '#272822',
@@ -142,33 +142,37 @@ const RequestDetails = () => {
         base0D: '#66d9ef',
         base0E: '#ae81ff',
         base0F: '#cc6633',
-      };
+    };
 
-      const setViewHandler = (view) => {
+    const setViewHandler = (view) => {
         setView(view);
-      }
+    }
 
     return (
         <div className="h-[80vh] flex flex-col border border-gray-700 bg-gray-800 text-white text-start">
-            
-            <div className="flex justify-start items-center ">
+            <div className="flex justify-between gap-2">
+                <div className='flex items-center gap-2 ml-2'>
+                    <div className="close bg-[#fc5b57] w-[13px] h-[13px] rounded-full"></div>
+                    <div className="close bg-[#e5bf3c] w-[13px] h-[13px] rounded-full"></div>
+                    <div className="close bg-[#57c038] w-[13px] h-[13px] rounded-full"></div>
+                </div>
                 <div className="flex">
                     <button className={`px-4 py-1  ${view === 'json' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('json')}>JSON</button>
                     <button className={`px-4 py-1  ${view === 'raw' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('raw')}>RAW</button>
                     <button className={`px-4 py-1  ${view === 'table' ? 'bg-blue-500' : 'bg-blue-400'}`} onClick={() => setViewHandler('table')}>TABLE</button>
                 </div>
             </div>
-           
+
             <div className="overflow-y-auto hide-scroll h-full">
-            {
-                view === 'raw' ? <pre>{JSON.stringify(json, null, 2)}</pre> : null
-            }
-            {
-                view === 'json' ? <JSONTree data={json} theme={theme}/> : null
-            }
-            {
-                view === 'table' ? <TableView/> : null
-            }
+                {
+                    view === 'raw' ? <pre>{JSON.stringify(json, null, 2)}</pre> : null
+                }
+                {
+                    view === 'json' ? <JSONTree data={json} theme={theme} /> : null
+                }
+                {
+                    view === 'table' ? <TableView /> : null
+                }
             </div>
         </div>
     )
