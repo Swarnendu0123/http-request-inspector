@@ -18,7 +18,7 @@ const RequestContainer = () => {
     }
 
     return (
-        <div className="hide-scroll sm:col-span-1 col-span-3  overflow-y-auto text-start max-h-[74vh]">
+        <div className="hide-scroll sm:col-span-1 col-span-3  overflow-y-auto text-start max-h-[80vh]">
             {
                 messeges.map((item: Messege, index: number) => {
                     return <RequestMessege key={index} messege={item} />

@@ -12,7 +12,7 @@ const TableView = () => {
     const { url, method, body, headers, params, query, time } = messege;
 
     return (
-        <div className="hide-scroll grid gap-4  max-h-[70vh] overflow-y-auto border border-gray-700 bg-gray-800 text-white text-center">
+        <div className="hide-scroll grid gap-4 overflow-y-auto border border-gray-700 bg-gray-800 text-white text-center">
             <div className="col-span-2 mt-2">
                 <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}
@@ -149,7 +149,7 @@ const RequestDetails = () => {
       }
 
     return (
-        <div className=" grid border border-gray-700 bg-gray-800 text-white text-start">
+        <div className="h-[80vh] flex flex-col border border-gray-700 bg-gray-800 text-white text-start">
             
             <div className="flex justify-start items-center ">
                 <div className="flex">
@@ -159,7 +159,7 @@ const RequestDetails = () => {
                 </div>
             </div>
            
-            <div className="overflow-y-auto hide-scroll max-h-[70vh]">
+            <div className="overflow-y-auto hide-scroll h-full">
             {
                 view === 'raw' ? <pre>{JSON.stringify(json, null, 2)}</pre> : null
             }
