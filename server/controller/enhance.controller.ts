@@ -35,8 +35,9 @@ async function enhance(req: Request, res: any) {
 
 async function enhanceRequest(request: RequestProp) {
 	/// Generate content for the request
-	console.log(request);
-	
+	// console.log(request.body); 
+	const clientSideCode = request.body.clientSide
+	const serverSideCode = request.body.serverSide
 	const prompt = `
 	  Here is a request object:
 	  Method: ${request.method}
@@ -46,9 +47,10 @@ async function enhanceRequest(request: RequestProp) {
 	  Query: ${JSON.stringify(request.query, null, 2)}
   
 	  Please review the following Request object and provide feedback on potential improvements. Consider aspects like security, efficiency, and best practices. For example, if the user is sending username and password via params, suggest that it would be better if sent in the body and specifically in JSON format. Another example could be if an API endpoint for getting a product is better sent in the params. The response should contain points and code examples.
-	  Format the response properly in markdown. Also generate the client side request code in ${request.clientSide} for the given request object. and the server side code in ${request.serverSide} to handle the request.
+	  Format the response properly in markdown. Also generate the client side request code in ${clientSideCode} for the given request object. and the server side code in ${serverSideCode} to handle the request.
 	`;
 
+	console.log(prompt);
 	/// Generate content
 	try {
 		const { text } = await generateText({
