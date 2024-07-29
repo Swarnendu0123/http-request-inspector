@@ -28,16 +28,16 @@ async function connectToMongoDB() {
 }
 connectToMongoDB();
 
-app.use("/v1", (req: Request, res: Response, next: () => void) => {
-  if (req.headers.origin === FRONTEND_URL) {
-    next();
-  } else {
-    res.status(403).json({
-      error: "Invalid URL",
-      message: `You are not authorized to make this request. Please use ${FRONTEND_URL} to make requests.`,
-    });
-  }
-});
+// app.use("/v1", (req: Request, res: Response, next: () => void) => {
+//   if (req.headers.origin === FRONTEND_URL) {
+//     next();
+//   } else {
+//     res.status(403).json({
+//       error: "Invalid URL",
+//       message: `You are not authorized to make this request. Please use ${FRONTEND_URL} to make requests.`,
+//     });
+//   }
+// });
 
 let id: string = "";
 
