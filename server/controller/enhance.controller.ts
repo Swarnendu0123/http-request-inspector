@@ -34,13 +34,8 @@ async function enhance(req: Request, res: any) {
 }
 
 async function enhanceRequest(request: RequestProp) {
-	/// Initialize the Google Generative AI client
-	const genAI = new GoogleGenerativeAI(GEMINI_API as string);
-	const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
-
 	/// Generate content for the request
-	// console.log(request.body);
+	console.log(request);
 	
 	const prompt = `
 	  Here is a request object:
@@ -51,7 +46,7 @@ async function enhanceRequest(request: RequestProp) {
 	  Query: ${JSON.stringify(request.query, null, 2)}
   
 	  Please review the following Request object and provide feedback on potential improvements. Consider aspects like security, efficiency, and best practices. For example, if the user is sending username and password via params, suggest that it would be better if sent in the body and specifically in JSON format. Another example could be if an API endpoint for getting a product is better sent in the params. The response should contain points and code examples.
-	  Format the response properly in markdown. Also generate the client side request code in ${request.body.clientSide} for the given request object. and the server side code in ${request.body.serverSide} to handle the request.
+	  Format the response properly in markdown. Also generate the client side request code in ${request.clientSide} for the given request object. and the server side code in ${request.serverSide} to handle the request.
 	`;
 
 	/// Generate content
