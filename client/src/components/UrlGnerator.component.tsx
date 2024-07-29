@@ -75,13 +75,6 @@ const UrlGnerator = () => {
         setSelectedMessege(res.data[0])
     }
 
-    useEffect(() => {
-        if (user) {
-            handleRefresh();
-        }
-    }, [user]);
-
-
 
     const handleCopy = () => {
         const copyText = url;

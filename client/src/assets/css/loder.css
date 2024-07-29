@@ -1,0 +1,26 @@
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 40px;
+    aspect-ratio: 1;
+     --c: linear-gradient(#ffffff 0 0);
+     --m: radial-gradient(farthest-side,#ff0000 92%,#0000);
+    background: 
+      var(--c),var(--m),
+      var(--c),var(--m), 
+      var(--c),var(--m);
+    background-size: 8px 15px,8px 8px;
+    background-repeat: no-repeat;
+    animation: l15 2s infinite;
+  }
+  @keyframes l15 {
+    0%     {background-position: 0 0               ,0 100%,50% 0               ,50% 100%,100% 0               ,100% 100%}
+    11.11% {background-position: 0 calc(100% - 8px),0 100%,50% 0               ,50% 100%,100% 0               ,100% 100%}
+    22.22% {background-position: 0 calc(100% - 8px),0 100%,50% calc(100% - 8px),50% 100%,100% 0               ,100% 100%}
+    33.33% {background-position: 0 calc(100% - 8px),0 100%,50% calc(100% - 8px),50% 100%,100% calc(100% - 8px),100% 100%}
+    44.44% {background-position: 0 0               ,0 15px,50% calc(100% - 8px),50% 100%,100% calc(100% - 8px),100% 100%}
+    55.55% {background-position: 0 0               ,0 15px,50% 0               ,50% 15px,100% calc(100% - 8px),100% 100%}
+    66.66% {background-position: 0 0               ,0 15px,50% 0               ,50% 15px,100% 0               ,100% 15px}
+    77.77% {background-position: 0 0               ,0 100%,50% 0               ,50% 15px,100% 0               ,100% 15px}
+    88.88% {background-position: 0 0               ,0 100%,50% 0               ,50% 100%,100% 0               ,100% 15px}
+    100%   {background-position: 0 0               ,0 100%,50% 0               ,50% 100%,100% 0               ,100% 100%}
+  }

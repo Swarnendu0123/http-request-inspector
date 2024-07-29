@@ -1,4 +1,5 @@
 import "./App.css";
+import "./assets/css/loder.css"
 import UrlGnerator from "./components/UrlGnerator.component";
 import Navbar from "./components/Navbar.component";
 import HomeRoute from "./routes/Home.route";
