@@ -124,7 +124,7 @@ const Suggestions = () => {
         <div className="h-full flex items-center justify-center flex-col">
           <p className="text-center loader"></p>
           <p>---------</p>
-          <p className="text-center">Generating Suggisions...</p>
+          <p className="text-center">Generating Suggestions...</p>
         </div>
       ) : (
         <div className="text-start p-2 overflow-y-auto hide-scroll no-tailwindcss">
