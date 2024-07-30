@@ -33,7 +33,7 @@ app.use("/v1", (req: Request, res: Response, next: () => void) => {
     next();
   } else {
     res.status(403).json({
-      error: "Invalid URL",
+      error: "Invalid Origin Access",
       message: `You are not authorized to make this request. Please use ${FRONTEND_URL} to make requests.`,
     });
   }
@@ -103,11 +103,11 @@ const handleRequest = (req: Request, res: Response) => {
     appendToStartIndex(req, reqURL);
     res.json({
       status: "success",
-      message: `Go to ${FRONTEND_URL} and click on refresh button to see the request you just made.`,
+      message: `Go to ${FRONTEND_URL} to see the request you just made.`,
     });
     return;
   }
-  res.status(400).json({ error: "Invalid ID" });
+  res.status(400).json({ error: "Session Expired", message: "Please generate a new endpoint URL to make request." });
 };
 
 app.get("/req/:id", handleRequest);
