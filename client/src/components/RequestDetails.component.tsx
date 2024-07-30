@@ -18,10 +18,10 @@ const TableView = () => {
                     {time}
                 </div>
                 <div className={`inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium text-white
-                    ${method ? "bg-teal-500"
-                        : method ? "bg-blue-500"
-                            : method ? "bg-yellow-500"
-                                : method ? "bg-red-500"
+                    ${method === "GET" ? "bg-teal-500"
+                        : method === "POST" ? "bg-blue-500"
+                            : method === "PUT" ? "bg-yellow-500"
+                                : method === "DELETE" ? "bg-red-500"
                                     : "bg-gray-600"
                     }`}>
                     <span>{method}</span>
