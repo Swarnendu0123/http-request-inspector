@@ -76,9 +76,9 @@ const Profile = () => {
                                 <DropdownMenuItem>
                                     <span className="">{user.email}</span>
                                 </DropdownMenuItem>
-                                <DropdownMenuItem>
+                                {/* <DropdownMenuItem>
                                     <span>How to use</span>
-                                </DropdownMenuItem>
+                                </DropdownMenuItem>  */}
                                 <Button className="w-full mt-2 bg-red-600 hover:bg-red-700 text-white rounded-lg text-center font-semibold" onClick={handleLogout}>
                                     Log Out
                                 </Button>
