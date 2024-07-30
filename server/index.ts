@@ -103,7 +103,7 @@ const handleRequest = (req: Request, res: Response) => {
     appendToStartIndex(req, reqURL);
     res.json({
       status: "success",
-      message: `Go to ${FRONTEND_URL} to see the request you just made.`,
+      message: `Your request cached successfully. Close this tab and go to ${FRONTEND_URL} to see the request you just made.`,
     });
     return;
   }
