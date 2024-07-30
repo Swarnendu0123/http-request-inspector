@@ -17,22 +17,15 @@ const TableView = () => {
                 <div className="col-span-2 bg-gray-800 text-white mb-2">
                     {time}
                 </div>
-                {method == 'GET' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-teal-500 text-white">
-                    {method}
-                </span>}
-                {method == 'POST' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-blue-500 text-white">
-                    {method}
-                </span>}
-                {method == 'PUT' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-yellow-500 text-white">
-                    {method}
-                </span>}
-                {method == 'DELETE' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-red-500 text-white">
-                    {method}
-                </span>}
-                {method == 'PATCH' && <span className="inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-800 text-white">
-                    {method}
-                </span>}
-
+                <div className={`inline-flex items-center gap-x-1.5 py-1.5 px-3 rounded-full text-xs font-medium text-white
+                    ${method ? "bg-teal-500"
+                        : method ? "bg-blue-500"
+                            : method ? "bg-yellow-500"
+                                : method ? "bg-red-500"
+                                    : "bg-gray-600"
+                    }`}>
+                    <span>{method}</span>
+                </div>
             </div>
             <div className="col-span-2">
                 {url}

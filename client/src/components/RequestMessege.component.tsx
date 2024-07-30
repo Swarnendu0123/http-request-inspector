@@ -20,7 +20,7 @@ const RequestMessege = ({ messege }: { messege: RequestType }) => {
                 : method === "POST" ? "bg-blue-500"
                     : method === "PUT" ? "bg-yellow-500"
                         : method === "DELETE" ? "bg-red-500"
-                            : "bg-black"}`}>
+                            : "bg-gray-600"}`}>
                 <span>
                     {method}
                 </span>
