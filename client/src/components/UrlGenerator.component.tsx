@@ -10,10 +10,9 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
 import { auth } from "./auth/firebase.config";
-import { use } from "marked";
 
 
-const UrlGnerator = () => {
+const UrlGenerator = () => {
     const [url, setUrl] = useRecoilState(reqUrl);
     const setSelectedMessege = useSetRecoilState(selectedMessege);
     const setMesseges = useSetRecoilState(allMesseges);
@@ -28,7 +27,7 @@ const UrlGnerator = () => {
         return () => unsubscribe();
     }, [setUser]);
 
-    const hanldeGnerate = async () => {
+    const hanldeGenerate = async () => {
         try {
             const res = await axios.post(`${BACKEND_URL}/v1`, {
                 name: user?.displayName,
@@ -115,7 +114,7 @@ const UrlGnerator = () => {
             </div>
 
             <div className="sm:col-span-2 col-span-7">
-                <Button onClick={hanldeGnerate}>Generate endpoint URL</Button>
+                <Button onClick={hanldeGenerate}>Generate endpoint URL</Button>
             </div>
             {/* <div className="sm:col-span-1 col-span-5">
                 <Button onClick={handleRefresh}>Sync</Button>
@@ -124,4 +123,4 @@ const UrlGnerator = () => {
     )
 }
 
-export default UrlGnerator;
+export default UrlGenerator;
