@@ -55,8 +55,8 @@ const UrlGenerator = () => {
 
     // if user exist call handleRefresh in every 2 seconds
     useEffect(() => {
-        handleRefresh();
         if (user) {
+            handleRefresh();
             const interval = setInterval(() => {
                 handleRefresh();
             }, 2000);
@@ -70,17 +70,17 @@ const UrlGenerator = () => {
             email: user?.email,
         })
         if (res.data.length === 0) {
-            // toast.error('NO request found', {
-            //     position: "bottom-right",
-            //     autoClose: 5000,
-            //     hideProgressBar: false,
-            //     closeOnClick: true,
-            //     pauseOnHover: true,
-            //     draggable: true,
-            //     progress: undefined,
-            //     theme: "dark",
-            //     transition: Bounce,
-            // });
+            toast.error('NO request found', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
             return;
         }
         // res.data in reverse order
