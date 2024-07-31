@@ -28,6 +28,20 @@ const UrlGenerator = () => {
     }, [setUser]);
 
     const hanldeGenerate = async () => {
+        if (!user) {
+            toast.error('Please Signin first', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
+            return;
+        }
         try {
             const res = await axios.post(`${BACKEND_URL}/v1`, {
                 name: user?.displayName,
@@ -45,7 +59,7 @@ const UrlGenerator = () => {
         if (user) {
             const interval = setInterval(() => {
                 handleRefresh();
-            }, 3000);
+            }, 2000);
             return () => clearInterval(interval);
         }
     }, [user]);
@@ -56,17 +70,17 @@ const UrlGenerator = () => {
             email: user?.email,
         })
         if (res.data.length === 0) {
-            toast.error('NO request found', {
-                position: "bottom-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            // toast.error('NO request found', {
+            //     position: "bottom-right",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            //     theme: "dark",
+            //     transition: Bounce,
+            // });
             return;
         }
         // res.data in reverse order
