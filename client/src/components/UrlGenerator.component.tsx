@@ -130,9 +130,14 @@ const UrlGenerator = () => {
             <div className="sm:col-span-2 col-span-7">
                 <Button onClick={hanldeGenerate}>Generate endpoint URL</Button>
             </div>
-            {/* <div className="sm:col-span-1 col-span-5">
-                <Button onClick={handleRefresh}>Sync</Button>
-            </div> */}
+
+            <div className="sm:col-span-1 col-span-5">
+                <Button onClick={handleRefresh}>
+                    <a href="https://drive.google.com/drive/folders/1VHvHUI8VRT3VCPZN8V0hux8e8u8ZZARQ" target="__blank">
+                        How to use?
+                    </a>
+                </Button>
+            </div>
         </div>
     )
 }
