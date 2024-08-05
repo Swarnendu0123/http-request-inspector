@@ -1,5 +1,4 @@
 import { Link } from "@nextui-org/react";
-import { FaGithub } from "react-icons/fa";
 import Login from "./auth/login.auth";
 
 const Navbar = () => {
